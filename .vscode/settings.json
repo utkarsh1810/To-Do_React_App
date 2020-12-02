@@ -1,0 +1,5 @@
+{
+    "files.autoSave": "onWindowChange",
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.formatOnSave": true
+}
