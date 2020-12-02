@@ -1,13 +1,28 @@
-import React, {useState} from 'react';
+// https://cra.link/deployment
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import { Button, InputLabel, Input, FormControl } from '@material-ui/core';
+import Todo from './Todo';
+import firebase from 'firebase';
+import db from './firebase';
 
 function App() {
-  const [todos, setTodo]=useState(['Take a look on AI Course','Take a look on Java Course','I have to live stream today']);
+  const [todos, setTodo]=useState([]);
   const [input,setInput]=useState('');
+  useEffect(()=>{
+      // this code fires  when the app.js loads
+      db.collection('todos').orderBy('text','desc').onSnapshot(snapshot => {
+        // console.log(snapshot.docs.map(doc=>doc.data().text)); 
+        setTodo(snapshot.docs.map(doc=>({id:doc.id,text:doc.data().text,time:doc.data.timestamp})));
+      });
+  },[]);
   //this is the function to add new items in the to-do list
   const addTodo = (event)=>{
     event.preventDefault(); //  this will stop thr refresh
+    db.collection('todos').add({
+      text: input,
+      timestamp:firebase.firestore.FieldValue.serverTimestamp()
+    });
     setTodo([...todos,input]);
     setInput('');
   };
@@ -23,7 +38,7 @@ function App() {
       </form>
       <ul>
         {todos.map(todo=>(
-          <Todo todoText={todo}></Todo> 
+          <Todo todo={todo}/> 
         ))}
       </ul>
     </div>
