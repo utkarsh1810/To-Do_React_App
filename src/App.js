@@ -12,7 +12,7 @@ function App() {
   useEffect(()=>{
       // this code fires  when the app.js loads
       db.collection('todos').orderBy('text','desc').onSnapshot(snapshot => {
-        // console.log(snapshot.docs.map(doc=>doc.data().text)); 
+        console.log(snapshot.docs.map(doc=>doc.data())); 
         setTodo(snapshot.docs.map(doc=>({id:doc.id,text:doc.data().text,time:doc.data.timestamp})));
       });
   },[]);
