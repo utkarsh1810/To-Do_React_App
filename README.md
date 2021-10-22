@@ -1,5 +1,6 @@
 ## This is a To-Do App built using React JS and Firebase
 
+
 **To see <a href="https://todo-app-e7c08.web.app">Live Demo</a>**
 
 **To see <a href="https://console.firebase.google.com/project/todo-app-e7c08/overview">Project Console</a>**
@@ -30,6 +31,4 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### 'About Application'
 
-This application maintain your to do list.
